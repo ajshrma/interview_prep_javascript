@@ -29,6 +29,33 @@ function minimumSubstring(S, T) {
     return res;
 }
 
+
+//MINE ANSWER SET BASED
+
+const longestSubstr = (str) => {
+    
+    let charSet = new Set();
+    let left = 0 , maxSub = '';
+    
+    
+    for(let right = 0; right < str.length; right++){
+        
+        while(charSet.has(str[right])){
+            charSet.delete(str[left]);
+            left++;
+        }
+        charSet.add(str[right]);
+        
+        if(right - left + 1 > maxSub.length) {
+            maxSub = str.slice(left,right + 1);
+        }
+    }
+    
+    return maxSub;
+}
+
+console.log(longestSubstr('ABCRMKIOPWDDDGHIJKL'))
+
 /*
 Test Cases: 
 "abc","" => ""
